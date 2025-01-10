@@ -18,50 +18,6 @@ model User {
   updatedAt     DateTime  @updatedAt
 }
 
-model Teacher {
-  id            String    @id @default(cuid())
-  userId        String    @unique
-  user          User      @relation(fields: [userId], references: [id])
-  bio           String?
-  specialization String?
-  experience    Int?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-}
-
-model University {
-  id          String      @id @default(cuid())
-  name        String
-  description String?
-  location    String?
-  categories  Category[]
-  marathons   Marathon[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-}
-
-model Category {
-  id            String    @id @default(cuid())
-  name          String
-  description   String?
-  universityId  String
-  university    University @relation(fields: [universityId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-}
-
-model Marathon {
-  id            String    @id @default(cuid())
-  name          String
-  description   String?
-  startDate     DateTime
-  endDate       DateTime
-  universityId  String
-  university    University @relation(fields: [universityId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-}
-
 enum Role {
   STUDENT
   TEACHER
